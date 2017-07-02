@@ -29,31 +29,40 @@ public class SeckillServiceTest {
     @Test
     public void getSeckillList() throws Exception {
         List<Seckill> list = seckillService.getSeckillList();
-        logger.info("list={}",list);
+        logger.info("list={}", list);
     }
 
     @Test
     public void getSeckillById() throws Exception {
-         Seckill seckill = seckillService.getSeckillById(1000L);
-         logger.info("seckill={}",seckill);
+        Seckill seckill = seckillService.getSeckillById(1000L);
+        logger.info("seckill={}", seckill);
     }
 
     @Test
     public void exportSeckillUrl() throws Exception {
         long id = 1000;
         Exposer exposer = seckillService.exportSeckillUrl(id);
-        logger.info("exposer={}",exposer);
+        logger.info("exposer={}", exposer);
     }
 
     @Test
     public void executeSeckill() throws Exception {
         long id = 1000;
-        long phone= 1556544556;
+        long phone = 1556544556;
         String md5 = "0b95fb90e01dcc708ee56a27184c31d4";
-        SeckillExecution execution = seckillService.executeSeckill(id,phone,md5);
-        logger.info("excution={}",execution);
-
-
+        SeckillExecution execution = seckillService.executeSeckill(id, phone, md5);
+        logger.info("excution={}", execution);
     }
 
+    @Test
+    public void executeSeckillProcedure() throws Exception {
+        long seckillId = 1000;
+        long phone = 15249698741L;
+        Exposer exposer = seckillService.exportSeckillUrl(seckillId);
+        if (exposer.isExposed()) {
+            String md5 = exposer.getMd5();
+            SeckillExecution ex = seckillService.executeSeckillProcedure(seckillId,phone,md5);
+        logger.info(ex.getStateInfo());
+        }
+    }
 }

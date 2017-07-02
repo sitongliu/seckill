@@ -42,4 +42,9 @@ http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springfr
         <!--给出扫描dao接口的包-->
         <property name="basePackage" value="dao"/>
     </bean>
+
+    <bean class="dao.cache.RedisDao" id="redisDao">
+        <constructor-arg name="ip" value="localhost"/>
+        <constructor-arg name="port" value="6379"/>
+    </bean>
 </beans>

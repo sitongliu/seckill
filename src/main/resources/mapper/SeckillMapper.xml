@@ -29,6 +29,14 @@
 
     </select>
 
+<select id="killByProcedure" statementType="CALLABLE">
+    call executeSeckill(
+    #{seckillid,jdbcType=BIGINT,mode=IN},
+    #{userphone,jdbcType=BIGINT,mode=IN},
+    #{killTime,jdbcType=TIMESTAMP,mode=IN},
+    #{result,jdbcType=INTEGER,mode=OUT}
+    )
 
+</select>
 
 </mapper>
